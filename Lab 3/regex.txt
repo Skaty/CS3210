@@ -1,0 +1,1 @@
+Matrix multiplication took ((?:\d|\.)+)*(?:\n|\s)+?((?:\d|,)+)+?\s+cycles(?:.|\n)+?((?:\d|,)+)+?\s+instructions(?:.|\n)+?((?:\d|\.)+)+ seconds time elapsed
