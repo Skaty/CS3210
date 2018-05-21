@@ -1,0 +1,17 @@
+#ifndef CONSTS_MATCH_H
+#define CONSTS_MATCH_H
+
+#define NUM_HALVES 2
+#define HALVE_ROUNDS 2700
+
+#define NUM_PLAYERS 22
+#define NUM_FIELDS 12
+#define NUM_PLAYERS_WIDTH 8
+#define NUM_PLAYERS_HEIGHT 3
+
+#define TEAM_A_START_RANK 12
+#define TEAM_A_END_RANK 22
+#define TEAM_B_START_RANK 23
+#define TEAM_B_END_RANK 33
+
+#endif

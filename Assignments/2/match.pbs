@@ -1,0 +1,10 @@
+#!/bin/bash
+#PBS -q normal
+#PBS -l select=2:ncpus=24:mpiprocs=17
+#PBS -l walltime=00:10:00
+#PBS -N MPI_MATCH
+#PBS -o match.pbs.o
+#PBS -e match.pbs.e
+module load openmpi/intel/1.10.2
+cd $PBS_O_WORKDIR
+mpirun matchon.nscc

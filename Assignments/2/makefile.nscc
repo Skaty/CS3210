@@ -1,0 +1,33 @@
+CC = mpicc
+INC_DIR = headers
+BIN_DIR = bin
+CFLAGS = -Wall -I$(INC_DIR)
+COMMON_OBJS = utils.o
+ODIR = obj
+MOD_LOAD = module load openmpi/intel/1.10.2
+
+_MATCH_OBJS = match_mpi.o field_match.o player_match.o $(COMMON_OBJS)
+MATCH_OBJS = $(patsubst %,$(ODIR)/%,$(_MATCH_OBJS))
+MATCH_DIR = match
+
+DEPS = $(wildcard $(INC_DIR)/*.h)
+
+all: matchon.nscc
+cleanmake: clean all
+
+$(ODIR)/%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+$(ODIR)/%.o:  $(MATCH_DIR)/%.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+$(ODIR)/%.o:  common/%.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+matchon.nscc: $(MATCH_OBJS)
+	$(CC) -o $@ $(MATCH_OBJS) $(CFLAGS)
+
+.PHONY: clean
+
+clean:
+	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~

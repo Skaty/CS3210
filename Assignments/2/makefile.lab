@@ -1,0 +1,42 @@
+CC = mpicc
+INC_DIR = headers
+BIN_DIR = bin
+CFLAGS = -Wall -I$(INC_DIR)
+COMMON_OBJS = utils.o
+ODIR = obj
+
+_MATCH_OBJS = match_mpi.o field_match.o player_match.o $(COMMON_OBJS)
+MATCH_OBJS = $(patsubst %,$(ODIR)/%,$(_MATCH_OBJS))
+MATCH_DIR = match
+
+_TRAINING_OBJS = training_mpi.o field_training.o player_training.o $(COMMON_OBJS)
+TRAINING_OBJS = $(patsubst %,$(ODIR)/%,$(_TRAINING_OBJS))
+TRAINING_DIR = training
+
+DEPS = $(wildcard $(INC_DIR)/*.h)
+
+all: $(BIN_DIR)/training $(BIN_DIR)/match
+cleanmake: clean all
+
+$(ODIR)/%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+$(ODIR)/%.o: $(TRAINING_DIR)/%.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+$(ODIR)/%.o:  $(MATCH_DIR)/%.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+$(ODIR)/%.o:  common/%.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+$(BIN_DIR)/training: $(TRAINING_OBJS)
+	$(CC) -o $@ $(TRAINING_OBJS) $(CFLAGS)
+
+$(BIN_DIR)/match: $(MATCH_OBJS)
+	$(CC) -o $@ $(MATCH_OBJS) $(CFLAGS)
+
+.PHONY: clean
+
+clean:
+	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~

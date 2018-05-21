@@ -1,0 +1,11 @@
+#!/bin/bash
+perf stat -- mpirun -H soctf-pdc-004 -np 12 bin/training 1> i7.training.o 2> i7.training.e
+perf stat -- mpirun -H soctf-pdc-011 -np 12 bin/training 1> i5.training.o 2> i5.training.e
+perf stat -- mpirun -H jetson04 -np 12 bin/training 1> jetson.training.o 2> jetson.training.e
+perf stat -- mpirun -H soctf-pdc-004,soctf-pdc-011 -np 12 bin/training 1> i5i7.training.o 2> i5i7.training.e
+perf stat -- mpirun -H soctf-pdc-004,soctf-pdc-011,jetson04 -np 12 bin/training 1> all.training.o 2> all.training.e
+perf stat -- mpirun -H soctf-pdc-004 -np 34 bin/match 1> i7.match.o 2> i7.match.e
+perf stat -- mpirun -H soctf-pdc-011 -np 34 bin/match 1> i5.match.o 2> i5.match.e
+perf stat -- mpirun -H jetson04 -np 34 bin/match 1> jetson.match.o 2> jetson.match.e
+perf stat -- mpirun -H soctf-pdc-004,soctf-pdc-011 -np 34 bin/match 1> i5i7.match.o 2> i5i7.match.e
+perf stat -- mpirun -H soctf-pdc-004,soctf-pdc-011,jetson04 -np 34 bin/match 1> all.match.o 2> all.match.e

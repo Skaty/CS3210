@@ -1,0 +1,10 @@
+MPI Football
+
+Setup in Lab:
+- Copy code onto all computers that you would like to run this code in.
+- Run `make -f makefile.lab` on all machines
+
+Setup in NSCC:
+- Copy over code to your workspace
+- Load the OpenMPI module (command: `module load openmpi/intel/1.10.2`)
+- Execute `make -f makefile.nscc`
