@@ -1,0 +1,3 @@
+Setup instructions:
+1. Run `make`
+2. Run either run-all.sh or run the individual programs that are compiled
