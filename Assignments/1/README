@@ -1,0 +1,5 @@
+Assignment 1
+-----
+
+Makefile can be executed with a variable NUM_THREADS, which defaults to 64.
+This represents the number of threads that the program will run on.
